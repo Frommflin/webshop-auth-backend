@@ -12,4 +12,8 @@ app.use(express.json());
 
 app.use("/api", authRoutes);
 
+app.get("/health", (req, res) => {
+  res.json({ ok: true, uptime: process.uptime() });
+});
+
 export default app;
