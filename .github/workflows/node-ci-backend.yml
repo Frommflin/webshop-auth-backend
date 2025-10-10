@@ -3,8 +3,8 @@ name: Node.js CI (Auth Backend)
 on:
   push:
     branches: ["main"]
-    paths:
-      - "auth-backend/**"
+    
+  workflow_dispatch: {}
 
 jobs:
   build:
