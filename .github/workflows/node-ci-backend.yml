@@ -38,7 +38,7 @@ jobs:
         if: ${{ success() }}
         uses: sarisia/actions-status-discord@v1
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_BACKEND }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK_AUTH_BACKEND }}
           noprefix: true
           title: "✅ Backend Build succeeded"
           color: 0x366336
@@ -48,7 +48,7 @@ jobs:
         if: ${{ failure() }}
         uses: sarisia/actions-status-discord@v1
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK_BACKEND }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK_AUTH_BACKEND }}
           noprefix: true
           title: "❌ Backend Build failed"
           color: 0x4d1717
