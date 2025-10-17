@@ -27,7 +27,7 @@ const connectDB = async () => {
 export const closeDB = async () => {
   await mongoose.disconnect();
   if (mongoServer) await mongoServer.stop();
-  console.log("MongoMemoryServer stoppes (testmode)");
+  console.log("MongoMemoryServer stopped");
 };
 
 export default connectDB;
