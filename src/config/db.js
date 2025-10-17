@@ -23,4 +23,11 @@ const connectDB = async () => {
   }
 };
 
+// Closing server, for CI testing
+export const closeDB = async () => {
+  await mongoose.disconnect();
+  if (mongoServer) await mongoServer.stop();
+  console.log("MongoMemoryServer stoppes (testmode)");
+};
+
 export default connectDB;

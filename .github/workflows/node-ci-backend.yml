@@ -32,7 +32,15 @@ jobs:
         run: npm ci
 
       - name: Run backend auth server
-        run: npm run start --if-present
+        run: |
+          node -e "
+          import connectDB, { closeDB } from './src/config/db.js';
+          (async () => {
+            await connectDB();
+            await closeDB();
+            process.exit(0);
+          })();
+          "
 
       - name: Run tests
         run: npm test --if-present
