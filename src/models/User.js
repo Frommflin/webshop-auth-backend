@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   consents: {
     marketing: { type: Boolean, default: false },
     analytics: { type: Boolean, default: false },
-    required: { type: Boolean, default: true } // t.ex. nödvändiga cookies / TOS
+    required: { type: Boolean, default: true } // användarvillkor som du måste acceptera för att skapa ett konto
   },
 
   deleted: { type: Boolean, default: false },
@@ -26,7 +26,7 @@ userSchema.methods.setPassword = async function(password) {
 };
 
 // GDPR Article 20 — Right to Data Portability:
-// denna metod ser till att känsliga data (t.ex. passwordHash) tas bort innan användardata exporteras eller delas
+// ta bort hashiningen innan användren data exporteras
 userSchema.methods.toPublicJSON = function() {
   const obj = this.toObject();
   delete obj.passwordHash;
