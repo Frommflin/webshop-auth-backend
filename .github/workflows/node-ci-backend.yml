@@ -29,8 +29,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build backend
-        run: npm run build --if-present
+      - name: Run backend auth server
+        run: npm run start --if-present
 
       - name: Run tests
         run: npm test --if-present
@@ -41,7 +41,7 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK_AUTH_BACKEND }}
           noprefix: true
-          title: "✅ Backend Build succeeded"
+          title: "✅ Backend server-start succeeded"
           color: 0x366336
           username: Auth Backend Build
 
@@ -51,6 +51,6 @@ jobs:
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK_AUTH_BACKEND }}
           noprefix: true
-          title: "❌ Backend Build failed"
+          title: "❌ Backend server-start failed"
           color: 0x4d1717
           username: Auth Backend Build
