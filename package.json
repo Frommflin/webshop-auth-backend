@@ -4,6 +4,10 @@
   "description": "Authentication backend for school-project",
   "main": "server.js",
   "type": "module",
+  "engines": {
+    "node": "22.20.0",
+    "npm": "10.9.3"
+  },
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
