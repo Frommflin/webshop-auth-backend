@@ -1,6 +1,6 @@
-# Webbshob autentiserings-backend
+# Webbshop autentiserings-backend
 
-Webshopens backend är separerade i webshops-funktioner och user-funktioner. I detta repository finns user-realterade backenden, registrering, inlogg med auth etc.
+Webbshoppens backend är separerade i webbshops-funktioner och user-funktioner. I detta repository finns user-realterade backenden, registrering, inlogg med auth etc.
 
 ## Versioner
 
@@ -51,4 +51,4 @@ Kontrollera installation genom att köra `nvm -v` i terminalen
 
 ## CI workflow
 
-Projektet genomgår test server-start (`npm run start`) vid varje push in i `master`-branchen. Resultat av bygget hittas under `Actions` > `Node.Js CI` i repo-menyn, alternativ navigera direkt till `https://github.com/Frommflin/webshop-auth-backend/actions`
+Projektet genomgår test server-start (`npm run start`) vid varje push in i `main`-branchen. Resultat av bygget hittas under `Actions` > `Node.Js CI` i repo-menyn, alternativ navigera direkt till `https://github.com/Frommflin/webshop-auth-backend/actions`
