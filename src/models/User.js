@@ -1,6 +1,15 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
+//GDPR Article 30 
+const consentLogSchema = new mongoose.Schema({
+  type: { type: String, required: true }, 
+  action: { type: String, enum: ['granted', 'revoked'], required: true },
+  timestamp: { type: Date, default: Date.now },
+  ipAddress: String, 
+  userAgent: String 
+});
+
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   name: String,
@@ -17,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
 
   // GDPR Article 30 — Consent Logs & Audit Trails
-  consentLogs: [consentLogSchema],
+ consentLogs: [consentLogSchema],
 
   deleted: { type: Boolean, default: false },
   deletedAt: Date
@@ -27,6 +36,11 @@ const userSchema = new mongoose.Schema({
 // Hashaning
 userSchema.methods.setPassword = async function(password) {
   this.passwordHash = await bcrypt.hash(password, 12);
+};
+
+userSchema.methods.logConsentAction = function(type, action, ipAddress, userAgent) {
+  this.consentLogs.push({ type, action, ipAddress, userAgent });
+  return this.save();
 };
 
 // GDPR Article 20 — Right to Data Portability:
