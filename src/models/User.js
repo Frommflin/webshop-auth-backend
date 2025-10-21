@@ -16,9 +16,13 @@ const userSchema = new mongoose.Schema({
     required: { type: Boolean, default: true } // användarvillkor som du måste acceptera för att skapa ett konto
   },
 
+  // GDPR Article 30 — Consent Logs & Audit Trails
+  consentLogs: [consentLogSchema],
+
   deleted: { type: Boolean, default: false },
   deletedAt: Date
 });
+
 
 // Hashaning
 userSchema.methods.setPassword = async function(password) {
