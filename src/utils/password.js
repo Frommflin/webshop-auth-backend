@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 
-const SALT_ROUNDS = parseInt(process.env.BCRYPT_SALT_ROUNDS);
+const SALT_ROUNDS = parseInt(process.env.BCRYPT_SALT_ROUNDS || "12", 10);
 
 export async function hashPassword(plainpassword) {
   return bcrypt.hash(plainpassword, SALT_ROUNDS);
