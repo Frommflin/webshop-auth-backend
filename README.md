@@ -52,3 +52,35 @@ Kontrollera installation genom att köra `nvm -v` i terminalen
 ## CI workflow
 
 Projektet genomgår test server-start (`npm run start`) vid varje push in i `main`-branchen. Resultat av bygget hittas under `Actions` > `Node.Js CI` i repo-menyn, alternativ navigera direkt till `https://github.com/Frommflin/webshop-auth-backend/actions`
+
+## ⚖️ GDPR-efterlevnad
+
+> ℹ️ Detta delsystem hanterar följande GDPR-områden:  
+> Consent (7), Access (15), Deletion (17), Security (32), Audit Logs (30)  
+> För övriga GDPR-punkter, se:  
+> [Frontend](https://github.com/Frommflin/webshop-react-frontend) och [Shop-backend](https://github.com/Frommflin/webshop-shop-backend)
+
+### 📜 Plan och implementering
+
+| # | GDPR-område | Artikel | Status | Förklaring |
+|:-:|:-------------|:--------|:--------|:------------|
+| 1 | **Consent Management** | 7 | ❌ | Samtycke vid registrering för att lagra personuppgifter. |
+| 2 | **Data Access Requests** | 15 | ❌ | Endpoint `/user-data` för att visa sparad användardata. |
+| 3 | **Data Deletion Requests** | 17 | ❌ | Endpoint `/delete-account` för att radera konto och data. |
+| 4 | **Security Measures** | 32 | ❌ | Hashning, saltning, JWT med HttpOnly-cookie, Helmet, CSRF-skydd, HTTPS. |
+| 5 | **Consent Logs & Audit Trails** | 30 | ❌ | Loggning av användarsamtycke och ändringar över tid. |
+| 6 | **Regular Updates** | 24 | ❌ | Kontinuerlig uppdatering av beroenden och säkerhetsrutiner. |
+
+---
+
+## 🧩 Planerade tekniska säkerhetsåtgärder
+
+- Hashning och saltning med **bcrypt**
+- JWT med **HttpOnly-cookie**
+- **Helmet** för säkra HTTP-headers  
+- **CORS** med whitelistade domäner  
+- **CSRF-token** för skydd mot Cross-Site Request Forgery  
+- **Input-sanering** (express-validator, DOMPurify)
+- **HTTPS** i utvecklings- och produktionsmiljö
+- **Loggning av samtycke och aktivitet**
+- **Endpoint för dataåtkomst och radering**
