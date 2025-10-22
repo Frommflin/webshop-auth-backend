@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import { hashPassword } from "../utils/password.js";
 import User from "../models/User.js";
 
 const registerController = async (req, res) => {
@@ -10,8 +10,7 @@ const registerController = async (req, res) => {
         .json({ message: "Name, email, and password are required" });
     }
 
-    const saltrounds = parseInt(process.env.BCRYPT_SALT_ROUNDS || "12", 10);
-    const passwordHash = await bcrypt.hash(password, saltrounds);
+    const passwordHash = await hashPassword(password);
 
     const newUser = new User({ name, email, passwordHash });
     await newUser.save();
