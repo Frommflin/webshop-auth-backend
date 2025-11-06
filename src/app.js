@@ -7,6 +7,16 @@ const app = express();
 
 const isProd = process.env.NODE_ENV === "production";
 
+app.set("trust proxy", 1);
+app.use((req, res, next) => {
+  if (!req.secure && isProd) {
+    const securePort = process.env.SECURE_PORT || 5443;
+    const host = req.hostname;
+    return res.redirect(`https://${host}:${securePort}${req.originalUrl}`);
+  }
+  next();
+});
+
 app.disable("x-powered-by");
 app.use(
   helmet({
@@ -18,7 +28,20 @@ app.use(
 app.use(helmet.referrerPolicy({ policy: "no-referrer" }));
 app.use(helmet.permittedCrossDomainPolicies({ permittedPolicies: "none" }));
 
-app.use(cors());
+const devOrigins = [
+  "http://localhost:5173",
+  "https://localhost:5173",
+  "http://localhost:5000",
+  "https://localhost:5443",
+];
+
+app.use(
+  cors({
+    origin: isProd ? true : devOrigins,
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 app.use("/api", authRoutes);
