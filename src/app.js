@@ -21,7 +21,7 @@ app.disable("x-powered-by");
 app.use(
   helmet({
     contentSecurityPolicy: isProd ? undefined : false,
-    hsts: isProd, // TODO: ändra till true vid produktion när vi använder https (kräver https)
+    hsts: isProd, // TODO: ändra till true vid produktion när vi använder https (kräver https) ändras med production i env
   })
 );
 

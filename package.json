@@ -9,8 +9,10 @@
     "npm": "10.9.3"
   },
   "scripts": {
-    "dev": "nodemon src/server.js",
-    "start": "node src/server.js",
+    "dev": "concurrently \"nodemon src/server.js\" \"nodemon src/https_server.js\"",
+    "start:http": "node src/server.js",
+    "start:https": "node src/https_server.js",
+    "start": "concurrently \"node src/server.js\" \"node src/https_server.js\"",
     "build": "echo \"no build step\"",
     "generate-certs": "bash ./scripts/generate-certs.sh",
     "test": "echo \"no tests\" && exit 0"
@@ -36,6 +38,7 @@
     "mongoose": "^8.19.1"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "mongodb-memory-server": "^10.2.3",
     "nodemon": "^3.1.10"
   }
