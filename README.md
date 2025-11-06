@@ -51,11 +51,15 @@ Kontrollera installation genom att köra `nvm -v` i terminalen
 
 ### Använd https server med självsignerande certifikat
 
+1. Se till att `NODE_ENV=production` är satt till production i env
+
+2.
 ```
 npm install
 
 npm run generate-certs
 ``` 
+3. Då det är ett självsignerande certifikat kan browsern se det som osäkert, tryck avancerat --> frotsätt(osäkert) för att bortse från varningen 
 
 ## CI workflow
 
