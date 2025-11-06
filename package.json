@@ -12,6 +12,7 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "build": "echo \"no build step\"",
+    "generate-certs": "bash ./scripts/generate-certs.sh",
     "test": "echo \"no tests\" && exit 0"
   },
   "repository": {

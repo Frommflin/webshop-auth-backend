@@ -18,6 +18,11 @@ pids
 # Environment variables
 .env
 
+# Local HTTPS certificates 
+certs/
+*.key
+*.cert
+
 # OS-filer
 .DS_Store
 Thumbs.db
