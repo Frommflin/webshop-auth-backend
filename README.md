@@ -49,6 +49,14 @@ Kontrollera installation genom att köra `nvm -v` i terminalen
 
 `npm run dev`
 
+### Använd https server med självsignerande certifikat
+
+```
+npm install
+
+npm run generate-certs
+``` 
+
 ## CI workflow
 
 Projektet genomgår test server-start (`npm run start`) vid varje push in i `main`-branchen. Resultat av bygget hittas under `Actions` > `Node.Js CI` i repo-menyn, alternativ navigera direkt till `https://github.com/Frommflin/webshop-auth-backend/actions`
