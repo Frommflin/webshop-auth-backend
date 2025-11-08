@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import helmet from "helmet";
+import cookieParser from "cookie-parser";
+import { csrfDoubleSubmitCookie, newCsrfToken } from "./middlewares/csrf.js";
 
 const app = express();
 
@@ -21,7 +23,7 @@ app.disable("x-powered-by");
 app.use(
   helmet({
     contentSecurityPolicy: isProd ? undefined : false,
-    hsts: isProd, // TODO: ändra till true vid produktion när vi använder https (kräver https) ändras med production i env
+    hsts: isProd,
   })
 );
 
@@ -41,8 +43,20 @@ app.use(
     credentials: true,
   })
 );
-
+app.use(cookieParser());
 app.use(express.json());
+app.use(csrfDoubleSubmitCookie());
+
+app.get("/api/csrf", (req, res) => {
+  const token = newCsrfToken();
+  res.cookie("csrf_token", token, {
+    httpOnly: false,
+    sameSite: "Strict",
+    secure: isProd,
+    path: "/",
+  });
+  res.status(204).end();
+});
 
 app.use("/api", authRoutes);
 
