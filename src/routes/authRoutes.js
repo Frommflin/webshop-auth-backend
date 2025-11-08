@@ -9,7 +9,9 @@ router.post("/auth/login", loginController);
 router.post("/auth/register", registerController);
 
 router.post("/auth/logout", (req, res) => {
-  res.send("Logout route");
+  res.clearCookie("JWT");
+  res.clearCookie("csrf_token");
+  res.json({ success: true });
 });
 
 router.post("/auth/profile", (req, res) => {
