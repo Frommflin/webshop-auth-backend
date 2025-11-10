@@ -1,6 +1,8 @@
 import express from "express";
 import loginController from "../controllers/loginController.js";
 import registerController from "../controllers/registerController.js";
+import deleteController from "../controllers/deleteController.js";
+import requireAuth from "../middlewares/jwtauth.js";
 
 const router = express.Router();
 
@@ -14,8 +16,8 @@ router.post("/auth/logout", (req, res) => {
   res.json({ success: true });
 });
 
-router.post("/auth/profile", (req, res) => {
-  res.send("Profile route");
-});
+router.post("/auth/profile", requireAuth);
+
+router.delete("/auth/delete", requireAuth, deleteController);
 
 export default router;

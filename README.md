@@ -79,9 +79,9 @@ Projektet genomgår test server-start (`npm run start`) vid varje push in i `mai
 | 1 | **Consent Management** | 7 | ❌ | Samtycke vid registrering för att lagra personuppgifter. |
 | 2 | **Data Access Requests** | 15 | ❌ | Endpoint `/user-data` för att visa sparad användardata. |
 | 3 | **Data Deletion Requests** | 17 | ❌ | Endpoint `/delete-account` för att radera konto och data. |
-| 4 | **Security Measures** | 32 | ❌ | Hashning, saltning, JWT med HttpOnly-cookie, Helmet, CSRF-skydd, HTTPS. |
+| 4 | **Security Measures** | 32 | ✅ | Hashning, saltning, JWT med HttpOnly-cookie, Helmet, CSRF-skydd, HTTPS. |
 | 5 | **Consent Logs & Audit Trails** | 30 | ❌ | Loggning av användarsamtycke och ändringar över tid. |
-| 6 | **Regular Updates** | 24 | ❌ | Kontinuerlig uppdatering av beroenden och säkerhetsrutiner. |
+| 6 | **Regular Updates** | 24 | ❌ | Kontinuerlig uppdatering av beroenden och säkerhetsrutiner. | snyk
 
 ---
 
